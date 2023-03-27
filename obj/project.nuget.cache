@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "LX6CaFf+ImtmBmPVAvXSMMH/wP4mrgMxlrfqzKh3ji2rgk/6Mo0VuQt/XwR26rl0Lmrk4Je0uyo568xL/llHpQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\alexc\\OneDrive\\Документы\\My Games\\Terraria\\tModLoader\\ModSources\\Inquisitors\\Inquisitors.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\alexc\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
+  ],
+  "logs": []
+}
