@@ -7,6 +7,7 @@ using Terraria.Audio;
 using System.Security.Cryptography.X509Certificates;
 using Terraria.DataStructures;
 using System;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Inquisitors.Items
 {
@@ -35,6 +36,11 @@ namespace Inquisitors.Items
             Item.useTurn = true;
             Item.useTime = 50;
         }
+
+        /*public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
+            return false;
+        }*/
 
         public override bool AltFunctionUse(Player player)
         {
@@ -70,12 +76,6 @@ namespace Inquisitors.Items
 			int dust1 = Dust.NewDust(new Vector2(hitbox.X, hitbox.Y), hitbox.Width, hitbox.Height, DustID.FlameBurst, 0f, 0f, 0, Color.Yellow, 1.5f);
             Main.dust[dust1].velocity *= 0.2f;
             Main.dust[dust1].noGravity = true;
-
-			if (player.GetModPlayer<GlobalPlayer>().ember == false)
-			{
-				player.AddBuff(BuffID.CursedInferno, 1);
-				player.AddBuff(BuffID.Regeneration, 1000);
-			}
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -89,10 +89,9 @@ namespace Inquisitors.Items
                     int newProj = ModContent.ProjectileType<LawrenceProjectile>();
                     ModProjectile mp = ModContent.GetModProjectile(newProj);
                     Vector2 newVelocity = velocity.RotateRandom(MathHelper.ToRadians(30));
-                    int proj = Projectile.NewProjectile(Projectile.InheritSource(player), player.position, newVelocity, newProj, damage, knockback, player.whoAmI);
+                    int proj = Projectile.NewProjectile(Projectile.InheritSource(player), player.position, newVelocity, newProj, 1666, knockback, player.whoAmI);
                     Main.projectile[proj].friendly = true;
                     Main.projectile[proj].timeLeft = 25;
-                    //Main.projectile[proj].stepSpeed;
                     player.GetModPlayer<GlobalPlayer>().altEffect = true;
                 }
                 return false;
@@ -104,6 +103,10 @@ namespace Inquisitors.Items
         {
             if (player.GetModPlayer<GlobalPlayer>().armorLaw == true)
             {
+                if(player.GetModPlayer<GlobalPlayer>().DashAccessoryEquipped && player.GetModPlayer<GlobalPlayer>().ember)
+                {
+                    Item.rare=ItemRarityID.Master;
+                }
                 Item.crit = 33;
                 Item.useTime = 15;
                 Item.useAnimation = 15;

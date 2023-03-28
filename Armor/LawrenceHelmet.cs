@@ -45,7 +45,17 @@ namespace Inquisitors.Armor
         {
 			player.setBonus = "Now you able to use strength of Lawrence";
             player.buffImmune[BuffID.OnFire] = true;
-			player.AddBuff(BuffID.Ironskin, 1);
+			player.buffImmune[BuffID.Bleeding] = true;
+            player.buffImmune[BuffID.Confused] = true;
+            player.buffImmune[BuffID.BrokenArmor] = true;
+            player.buffImmune[BuffID.Cursed] = true;
+            player.buffImmune[BuffID.Darkness] = true;
+            player.buffImmune[BuffID.Poisoned] = true;
+            player.buffImmune[BuffID.Silenced] = true;
+            player.buffImmune[BuffID.Slow] = true;
+            player.buffImmune[BuffID.Weak] = true;
+            player.buffImmune[BuffID.Stoned] = true;
+            player.AddBuff(BuffID.Ironskin, 1);
             player.GetDamage(DamageClass.Melee)+=0.4f;
 			player.GetModPlayer<GlobalPlayer>().armorLawSet = true;
 			int dust = Dust.NewDust(player.position, player.width, player.height, DustID.Ash, 0f, 0f, 0,default,0.7f) ;

@@ -13,7 +13,7 @@ namespace Inquisitors.Projectiles
         public int velocity;
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cursed Flame fire");
+			DisplayName.SetDefault("Cursed Flame Fireball");
 		}
 
         public override void SetDefaults()
@@ -30,7 +30,6 @@ namespace Inquisitors.Projectiles
 		    Projectile.light = 0.5f;
 		    Projectile.ignoreWater = false;
             Projectile.tileCollide = true;
-            Projectile.stepSpeed = 0.2f;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
@@ -51,22 +50,25 @@ namespace Inquisitors.Projectiles
 
         public override void Kill(int timeLeft)
         {
-            
             SoundEngine.PlaySound(SoundID.Item20);
-            int dust = Dust.NewDust(Projectile.position, 40, 40, DustID.Lava, 0f, 0f, 0, Color.Red, 1f);
-            Main.dust[dust].noGravity = true;
 
-            int dust2 = Dust.NewDust(Projectile.position, 40, 40, DustID.FlameBurst, 0f, 0f, 0, Color.Red, 1f);
-            Main.dust[dust2].noGravity = true;
+            for (int i = 0; i <= 10; i++)
+            {
+                int dust = Dust.NewDust(Projectile.position, 40, 40, DustID.Lava, 0f, 0f, 0, Color.Red, 1f);
+                Main.dust[dust].noGravity = true;
+
+                int dust2 = Dust.NewDust(Projectile.position, 40, 40, DustID.FlameBurst, 0f, 0f, 0, Color.Red, 1f);
+                Main.dust[dust2].noGravity = true;
+            }
         }
 
         public override void AI()
         {
-			int dust = Dust.NewDust(Projectile.position, Projectile.height, Projectile.width, DustID.Lava, 0f, 0f, 0, Color.Yellow,0.2f);
+			int dust = Dust.NewDust(Projectile.position, Projectile.height, Projectile.width, DustID.Lava, 0f, 0f, 0, Color.Yellow,0.5f);
 			Main.dust[dust].noGravity=true;
             Main.dust[dust].velocity *= 0.2f;
 
-            int dust2 = Dust.NewDust(Projectile.position, Projectile.height, Projectile.width, DustID.FlameBurst, 0f, 0f, 0, Color.Yellow, 0.5f);
+            int dust2 = Dust.NewDust(Projectile.position, Projectile.height, Projectile.width, DustID.FlameBurst, 0f, 0f, 0, Color.Yellow, 1f);
             Main.dust[dust2].noGravity = true;
             Main.dust[dust2].velocity *= 0.2f;
         }

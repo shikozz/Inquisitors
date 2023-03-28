@@ -60,10 +60,10 @@ namespace Inquisitors.Projectiles
             for (int i = 0; i < 8; i++)
             {
                 SoundEngine.PlaySound(SoundID.Item20);
-                int dust = Dust.NewDust(new Vector2(Projectile.position.X-50, Projectile.position.Y-50), 170, 170, DustID.Lava, 0f, 0f, 0, Color.Red, 2f);
+                int dust = Dust.NewDust(new Vector2(Projectile.position.X-50, Projectile.position.Y-50), 170, 170, DustID.Lava, 0f, 0f, 0, Color.Red, 1.5f);
                 Main.dust[dust].noGravity = true;
 
-                int dust2 = Dust.NewDust(new Vector2(Projectile.position.X - 50, Projectile.position.Y - 50), 170, 170, DustID.FlameBurst, 0f, 0f, 0, Color.Red, 3f);
+                int dust2 = Dust.NewDust(new Vector2(Projectile.position.X - 50, Projectile.position.Y - 50), 170, 170, DustID.FlameBurst, 0f, 0f, 0, Color.Red, 2f);
                 Main.dust[dust2].noGravity = true;
 
                 int newProj = ModContent.ProjectileType<LawrenceProjectileLight>();
@@ -76,7 +76,7 @@ namespace Inquisitors.Projectiles
 
         public override void AI()
         {
-			int dust = Dust.NewDust(new Vector2(Projectile.position.X-30, Projectile.position.Y-30), 100, 100, DustID.Lava, 0f, 0f, 0, Color.Yellow,1f);
+			int dust = Dust.NewDust(new Vector2(Projectile.position.X - 30, Projectile.position.Y - 30), 100, 100, DustID.Lava, 0f, 0f, 0, Color.Yellow,1f);
 			Main.dust[dust].noGravity=true;
             Main.dust[dust].velocity *= 0.2f;
 
