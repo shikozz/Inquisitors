@@ -118,7 +118,7 @@ namespace Inquisitors.Items
                 player.AddBuff(BuffID.BrokenArmor, 120);
             }
             altDelay--;
-            if(altDelay<=0)
+            if(altDelay<=0 && player.GetModPlayer<GlobalPlayer>().armorLaw)
             {
                 player.yoraiz0rEye = Math.Max(player.yoraiz0rEye, 2);
             }

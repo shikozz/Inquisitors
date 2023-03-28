@@ -66,8 +66,9 @@ namespace Inquisitors.Projectiles
                 int dust2 = Dust.NewDust(new Vector2(Projectile.position.X - 50, Projectile.position.Y - 50), 170, 170, DustID.FlameBurst, 0f, 0f, 0, Color.Red, 3f);
                 Main.dust[dust2].noGravity = true;
 
-                Vector2 newVelocity = Projectile.velocity.RotateRandom(MathHelper.ToRadians(360));
                 int newProj = ModContent.ProjectileType<LawrenceProjectileLight>();
+                ModProjectile nmpl = ModContent.GetModProjectile(newProj);
+                Vector2 newVelocity = Projectile.velocity.RotateRandom(MathHelper.ToRadians(90))*0.4f;
                 int lilProj = Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.position, newVelocity, newProj, 80, 4, Projectile.owner);
                 Main.projectile[lilProj].stepSpeed = 0.2f;
             }
@@ -75,11 +76,11 @@ namespace Inquisitors.Projectiles
 
         public override void AI()
         {
-			int dust = Dust.NewDust(Projectile.position, 70, Projectile.width, DustID.Lava, 0f, 0f, 0, Color.Yellow,1.5f);
+			int dust = Dust.NewDust(new Vector2(Projectile.position.X-30, Projectile.position.Y-30), 100, 100, DustID.Lava, 0f, 0f, 0, Color.Yellow,1f);
 			Main.dust[dust].noGravity=true;
             Main.dust[dust].velocity *= 0.2f;
 
-            int dust2 = Dust.NewDust(Projectile.position, 70, Projectile.width, DustID.FlameBurst, 0f, 0f, 0, Color.Yellow,2f);
+            int dust2 = Dust.NewDust(new Vector2(Projectile.position.X - 30, Projectile.position.Y - 30), 100, 100, DustID.FlameBurst, 0f, 0f, 0, Color.Yellow,1.5f);
             Main.dust[dust2].noGravity = true;
             Main.dust[dust2].velocity *= 0.2f;
         }

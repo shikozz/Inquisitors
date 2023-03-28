@@ -10,6 +10,7 @@ namespace Inquisitors.Projectiles
 {
 	public class LawrenceProjectileLight : ModProjectile
 	{
+        public int velocity;
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cursed Flame fire");
@@ -52,10 +53,10 @@ namespace Inquisitors.Projectiles
         {
             
             SoundEngine.PlaySound(SoundID.Item20);
-            int dust = Dust.NewDust(new Vector2(Projectile.position.X-50, Projectile.position.Y-50), 170, 170, DustID.Lava, 0f, 0f, 0, Color.Red, 2f);
+            int dust = Dust.NewDust(Projectile.position, 40, 40, DustID.Lava, 0f, 0f, 0, Color.Red, 1f);
             Main.dust[dust].noGravity = true;
 
-            int dust2 = Dust.NewDust(new Vector2(Projectile.position.X - 50, Projectile.position.Y - 50), 170, 170, DustID.FlameBurst, 0f, 0f, 0, Color.Red, 3f);
+            int dust2 = Dust.NewDust(Projectile.position, 40, 40, DustID.FlameBurst, 0f, 0f, 0, Color.Red, 1f);
             Main.dust[dust2].noGravity = true;
         }
 
