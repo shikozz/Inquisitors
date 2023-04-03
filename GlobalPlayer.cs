@@ -14,6 +14,8 @@ namespace Inquisitors
         public bool armorLaw = false;
         public bool armorLawSet = false;
         public bool altEffect = false;
+        public bool showMsg=false;
+        public int hideMsg=0;
         public const int DashDown = 0;
         public const int DashUp = 1;
         public const int DashRight = 2;
@@ -39,10 +41,25 @@ namespace Inquisitors
             if(armorLawSet)
             {
                 armorLaw = true;
+                hideMsg++;
+                if (hideMsg > 10)
+                {
+                    hideMsg = 2;
+                }
             }
             else
             {
                 armorLaw = false;
+                hideMsg = 0;
+            }
+            if(hideMsg==1)
+            {
+                Main.NewText("Lawrence Awakend", 255, 0, 0);
+                showMsg = true;
+            }
+            else
+            {
+                showMsg= false;
             }
         }
 

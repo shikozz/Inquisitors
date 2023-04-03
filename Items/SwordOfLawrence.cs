@@ -15,6 +15,7 @@ namespace Inquisitors.Items
 	{
         int altCool = 1000;
         int altDelay = 0;
+        String sprite = "Inquisitors/Items/SwordOfLawrence";
 		public override void SetStaticDefaults()
 		{
 			Tooltip.SetDefault("Sword of Lawrence, paladin who was sent to cure the presence of the cursed Queen");
@@ -29,25 +30,25 @@ namespace Inquisitors.Items
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.knockBack = 10;
 			Item.value = 10000;
-            Item.shoot = ModContent.ProjectileType <LawrenceProjectile>();
-            Item.shootSpeed = 13f;
             Item.rare = ItemRarityID.Red;
 			Item.UseSound = SoundID.Item1;
             Item.useTurn = true;
             Item.useTime = 50;
+            Item.shoot = ModContent.ProjectileType<LawrenceProjectile>();
+            Item.shootSpeed = 13f;
         }
-
-        /*public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
-        {
-            return false;
-        }*/
 
         public override bool AltFunctionUse(Player player)
         {
             return true;
         }
 
-		public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
+            return base.PreDrawInInventory(spriteBatch, position, frame, drawColor, itemColor, origin, scale);
+        }
+
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
 		{
 			target.AddBuff(BuffID.OnFire, 120);
 			target.AddBuff(BuffID.CursedInferno, 120);

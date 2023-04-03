@@ -66,7 +66,22 @@ namespace Inquisitors.Armor
                 Main.dust[dust1].velocity *= 0f;
             }
             Main.dust[dust].noGravity = true;
-            Main.dust[dust].velocity *= 0f;	
+            Main.dust[dust].velocity *= 0f;
+            if(player.GetModPlayer<GlobalPlayer>().showMsg)
+            {
+                for (int i = 0; i <= 100; i++)
+                {
+                    int newProj = ModContent.ProjectileType<LawrenceProjectile>();
+                    ModProjectile mp = ModContent.GetModProjectile(newProj);
+                    Vector2 velocity = new Vector2(10f,10f);
+                    Vector2 newVelocity = velocity.RotateRandom(MathHelper.ToDegrees(180));
+                    int proj = Projectile.NewProjectile(Projectile.InheritSource(player), player.position, newVelocity, newProj, 1666, 20, player.whoAmI);
+                    Main.projectile[proj].friendly = true;
+                    Main.projectile[proj].timeLeft = 25;
+                    Main.projectile[proj].penetrate = 100;
+                    player.GetModPlayer<GlobalPlayer>().altEffect = true;
+                }
+            }
         }
 
         public override void AddRecipes()

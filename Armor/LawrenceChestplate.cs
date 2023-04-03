@@ -10,6 +10,7 @@ namespace Inquisitors.Armor
 		[AutoloadEquip(EquipType.Body)]
 		public class LawrenceChestplate : ModItem
 		{
+		public bool text = false;
 			public override void SetStaticDefaults()
 			{
 				Tooltip.SetDefault("Chestplate of Lawrence, really light but was able to withstand strongest strikes"
@@ -33,9 +34,10 @@ namespace Inquisitors.Armor
             {
                 player.AddBuff(BuffID.Bleeding, 10);
 				player.AddBuff(BuffID.Suffocation, 10);
+				text = true;
             }
             player.statLifeMax2 += 40;
-        }
+			}
 
 
         public override void AddRecipes()
