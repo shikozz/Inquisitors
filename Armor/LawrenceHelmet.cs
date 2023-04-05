@@ -10,6 +10,11 @@ namespace Inquisitors.Armor
 	[AutoloadEquip(EquipType.Head)]
 	public class LawrenceHelmet : ModItem
 	{
+        public int immuneTime = 1;
+        public int immuneCooldown = 500;
+        public int immuneDelay = 100;
+        public int burstDelay = 0;
+        public int burstCooldown = 200;
 		public override void SetStaticDefaults()
 		{
 			Tooltip.SetDefault("Helmet of Lawrence with strange visor, which closes whole face, but Lawrence was able to swing his sword freely."
@@ -43,7 +48,10 @@ namespace Inquisitors.Armor
 
         public override void UpdateArmorSet(Player player)
         {
-			player.setBonus = "Now you able to use strength of Lawrence";
+			player.setBonus = "Now you able to use strength of Lawrence"
+                +"\nProvides all the benefits of Ankh Charm and some more" +
+                "\nCreates burst of fire when equipping" +
+                "\nGrants temporal invicibility for short time";
             player.buffImmune[BuffID.OnFire] = true;
 			player.buffImmune[BuffID.Bleeding] = true;
             player.buffImmune[BuffID.Confused] = true;
@@ -67,10 +75,11 @@ namespace Inquisitors.Armor
             }
             Main.dust[dust].noGravity = true;
             Main.dust[dust].velocity *= 0f;
-            if(player.GetModPlayer<GlobalPlayer>().showMsg)
+            if(player.GetModPlayer<GlobalPlayer>().showMsg||(player.statLife<=350&&burstDelay==0))
             {
                 for (int i = 0; i <= 100; i++)
                 {
+                    burstDelay = burstCooldown;
                     int newProj = ModContent.ProjectileType<LawrenceProjectile>();
                     ModProjectile mp = ModContent.GetModProjectile(newProj);
                     Vector2 velocity = new Vector2(10f,10f);
@@ -79,8 +88,29 @@ namespace Inquisitors.Armor
                     Main.projectile[proj].friendly = true;
                     Main.projectile[proj].timeLeft = 25;
                     Main.projectile[proj].penetrate = 100;
+                    Main.projectile[proj].tileCollide = true;
                     player.GetModPlayer<GlobalPlayer>().altEffect = true;
                 }
+            }
+            if (immuneDelay == 0)
+            {
+                immuneDelay = immuneCooldown;
+                if(immuneTime>=1)
+                {
+                    player.immune = true;
+                    player.immuneTime = 100;
+                    immuneTime--;
+                    //Main.NewText("armor_invul_test", 255, 255, 255);
+                }
+                else
+                {
+                    immuneTime = 500;
+                }
+            }
+            immuneDelay--;
+            if (burstDelay > 0)
+            {
+                burstDelay--;
             }
         }
 

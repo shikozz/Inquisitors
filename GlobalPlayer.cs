@@ -159,7 +159,6 @@ namespace Inquisitors
               // Here we take advantage of "player.eocDash" and "player.armorEffectDrawShadowEOCShield" to get the Shield of Cthulhu's afterimage effect
                 Player.eocDash = DashTimer;
                 Player.armorEffectDrawShadowEOCShield = true;
-
                 // count down frames remaining
                 DashTimer--;
             }
