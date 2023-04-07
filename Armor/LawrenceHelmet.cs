@@ -50,7 +50,7 @@ namespace Inquisitors.Armor
         {
 			player.setBonus = "Now you able to use strength of Lawrence"
                 +"\nProvides all the benefits of Ankh Charm and some more" +
-                "\nCreates burst of fire when equipping" +
+                "\nCreates burst of fire when you loose health" +
                 "\nGrants temporal invicibility for short time";
             player.buffImmune[BuffID.OnFire] = true;
 			player.buffImmune[BuffID.Bleeding] = true;
