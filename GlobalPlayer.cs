@@ -5,6 +5,7 @@ using Inquisitors.Items;
 using Inquisitors.Armor;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.Creative;
+using IL.Terraria.Graphics.CameraModifiers;
 
 namespace Inquisitors
 {
@@ -14,8 +15,10 @@ namespace Inquisitors
         public bool armorLaw = false;
         public bool armorLawSet = false;
         public bool altEffect = false;
+        public bool armorBurst = false;
         public bool showMsg=false;
         public int hideMsg=0;
+        public int lawSheldPos;
         public const int DashDown = 0;
         public const int DashUp = 1;
         public const int DashRight = 2;
@@ -101,6 +104,12 @@ namespace Inquisitors
             {
                 DashDir = -1;
             }
+        }
+
+        public override void PostUpdateEquips()
+        {
+            lawSheldPos++;
+            lawSheldPos %= 300;
         }
 
         public override void PreUpdateMovement()

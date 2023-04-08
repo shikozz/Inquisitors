@@ -14,7 +14,7 @@ namespace Inquisitors.Armor
         public int immuneCooldown = 500;
         public int immuneDelay = 100;
         public int burstDelay = 0;
-        public int burstCooldown = 200;
+        public int burstCooldown = 350;
 		public override void SetStaticDefaults()
 		{
 			Tooltip.SetDefault("Helmet of Lawrence with strange visor, which closes whole face, but Lawrence was able to swing his sword freely."
@@ -75,12 +75,13 @@ namespace Inquisitors.Armor
             }
             Main.dust[dust].noGravity = true;
             Main.dust[dust].velocity *= 0f;
-            if(player.GetModPlayer<GlobalPlayer>().showMsg||(player.statLife<=350&&burstDelay==0))
+            if(player.statLife<=350&&burstDelay==0)
             {
+                player.GetModPlayer<GlobalPlayer>().armorBurst = true;
                 for (int i = 0; i <= 100; i++)
                 {
                     burstDelay = burstCooldown;
-                    int newProj = ModContent.ProjectileType<LawrenceProjectile>();
+                    int newProj = ModContent.ProjectileType<LawrenceArmorProjectile>();
                     ModProjectile mp = ModContent.GetModProjectile(newProj);
                     Vector2 velocity = new Vector2(10f,10f);
                     Vector2 newVelocity = velocity.RotateRandom(MathHelper.ToDegrees(180));
@@ -89,8 +90,8 @@ namespace Inquisitors.Armor
                     Main.projectile[proj].timeLeft = 25;
                     Main.projectile[proj].penetrate = 100;
                     Main.projectile[proj].tileCollide = true;
-                    player.GetModPlayer<GlobalPlayer>().altEffect = true;
                 }
+                
             }
             if (immuneDelay == 0)
             {

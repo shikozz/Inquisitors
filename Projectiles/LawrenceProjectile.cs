@@ -57,21 +57,21 @@ namespace Inquisitors.Projectiles
         public override void Kill(int timeLeft)
         {
 
-            for (int i = 0; i < 8; i++)
-            {
-                SoundEngine.PlaySound(SoundID.Item20);
-                int dust = Dust.NewDust(new Vector2(Projectile.position.X - 50, Projectile.position.Y - 50), 170, 170, DustID.Lava, 0f, 0f, 0, Color.Red, 1.5f);
-                Main.dust[dust].noGravity = true;
+                for (int i = 0; i < 8; i++)
+                {
+                    SoundEngine.PlaySound(SoundID.Item20);
+                    int dust = Dust.NewDust(new Vector2(Projectile.position.X - 50, Projectile.position.Y - 50), 170, 170, DustID.Lava, 0f, 0f, 0, Color.Red, 1.5f);
+                    Main.dust[dust].noGravity = true;
 
-                int dust2 = Dust.NewDust(new Vector2(Projectile.position.X - 50, Projectile.position.Y - 50), 170, 170, DustID.FlameBurst, 0f, 0f, 0, Color.Red, 2f);
-                Main.dust[dust2].noGravity = true;
+                    int dust2 = Dust.NewDust(new Vector2(Projectile.position.X - 50, Projectile.position.Y - 50), 170, 170, DustID.FlameBurst, 0f, 0f, 0, Color.Red, 2f);
+                    Main.dust[dust2].noGravity = true;
 
-                int newProj = ModContent.ProjectileType<LawrenceProjectileLight>();
-                ModProjectile nmpl = ModContent.GetModProjectile(newProj);
-                Vector2 newVelocity = Projectile.velocity.RotateRandom(MathHelper.ToRadians(90)) * 0.4f;
-                int lilProj = Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.position, newVelocity, newProj, 80, 4, Projectile.owner);
-                Main.projectile[lilProj].stepSpeed = 0.2f;
-            }
+                    int newProj = ModContent.ProjectileType<LawrenceProjectileLight>();
+                    Vector2 newVelocity = Projectile.velocity.RotateRandom(MathHelper.ToRadians(90)) * 0.4f;
+                    int lilProj = Projectile.NewProjectile(Projectile.InheritSource(Projectile), Projectile.position, newVelocity, newProj, 80, 4, Projectile.owner);
+                    Main.projectile[lilProj].stepSpeed = 0.2f;
+                }
+            
         }
 
         public override void AI()

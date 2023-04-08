@@ -72,7 +72,7 @@ namespace Inquisitors.Projectiles
             Main.dust[dust2].noGravity = true;
             Main.dust[dust2].velocity *= 0.2f;
 
-            float maxDetectRadius = 400f; // The maximum radius at which a projectile can detect a target
+            float maxDetectRadius = 450f; // The maximum radius at which a projectile can detect a target
             float projSpeed = 13f; // The speed at which the projectile moves towards the target
 
             // Trying to find NPC closest to the projectile

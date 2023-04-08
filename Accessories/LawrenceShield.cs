@@ -33,6 +33,15 @@ namespace Inquisitors.Accessories
                 player.onFire = hideVisual;
             }
             player.GetModPlayer<GlobalPlayer>().DashAccessoryEquipped = true;
+
+            int newProj = ModContent.ProjectileType<LawrenceShieldProjectile>();
+            Vector2 velocity = new Vector2(0f, 0f);
+            Vector2 newVelocity = velocity.RotateRandom(MathHelper.ToDegrees(180));
+            int proj = Projectile.NewProjectile(Projectile.InheritSource(player), player.position, newVelocity, newProj, 50, 0, player.whoAmI);
+            Main.projectile[proj].friendly = true;
+            Main.projectile[proj].timeLeft = 2;
+            Main.projectile[proj].penetrate = 100;
+            Main.projectile[proj].tileCollide = false;
         }
 
         public override void AddRecipes()
