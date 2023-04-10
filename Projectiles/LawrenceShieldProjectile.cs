@@ -62,6 +62,7 @@ namespace Inquisitors.Projectiles
             {
                 Projectile.Center=new Vector2(player.Center.X+20f, player.Center.Y);
                 Projectile.rotation = 3.1f;
+               //Projectile.rotation += MathHelper.ToRadians(10);    
             }
             else
             {

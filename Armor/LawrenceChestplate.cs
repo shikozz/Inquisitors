@@ -43,7 +43,6 @@ namespace Inquisitors.Armor
         public override void AddRecipes()
 			{
 				Recipe recipe = CreateRecipe();
-                recipe.AddIngredient(ItemID.MeteoriteBar, 150);
                 recipe.AddIngredient(ItemID.HallowedBar, 50);
                 recipe.AddIngredient(ItemID.Star, 10);
                 recipe.AddIngredient(ItemID.AnkhCharm, 1);

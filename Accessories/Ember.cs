@@ -38,7 +38,6 @@ namespace Inquisitors.Accessories
             recipe.AddIngredient(ItemID.LavaBucket, 5);
             recipe.AddIngredient(ItemID.SpookyWood, 150);
             recipe.AddIngredient(ItemID.Star, 5);
-            recipe.AddIngredient(ItemID.AnkhCharm, 1);
             recipe.AddTile(TileID.Anvils);
 			recipe.Register();
 		}

@@ -42,15 +42,15 @@ namespace Inquisitors.Accessories
             Main.projectile[proj].timeLeft = 2;
             Main.projectile[proj].penetrate = 100;
             Main.projectile[proj].tileCollide = false;
+            player.noKnockback = true;
+            player.AddBuff(BuffID.PaladinsShield, 1);
         }
 
         public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.LavaBucket, 5);
-            recipe.AddIngredient(ItemID.SpookyWood, 150);
+            recipe.AddIngredient(ItemID.PaladinsShield);
             recipe.AddIngredient(ItemID.Star, 5);
-            recipe.AddIngredient(ItemID.AnkhCharm, 1);
             recipe.AddTile(TileID.Anvils);
 			recipe.Register();
 		}
